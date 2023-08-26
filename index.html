@@ -65,30 +65,16 @@
     
     <div class="container-fluid" style="margin-left: 8px; margin-right: 8px;">
       <div class="row">
-        <div class="col-sm-4" id="editorholder" style="padding:0px;">
-          <pre>
-            <code class="language-css">
-              @import url(https://fonts.googleapis.com/css?family=Questrial);
-              @import url(https://fonts.googleapis.com/css?family=Arvo);
 
-              @font-face {
-              	src: url(https://lea.verou.me/logo.otf);
-              	font-family: 'LeaVerou';
-              }
-              
-              /*
-               Shared styles
-               */
-              
-              section h1,
-              #features li strong,
-              header h2,
-              footer p {
-              	font: 100% Rockwell, Arvo, serif;
-              }
+        <div style="height: 200px;">
+          <textarea placeholder="Enter HTML Source Code" id="editing" spellcheck="false" oninput="update(this.value); sync_scroll(this);" onscroll="sync_scroll(this);" onkeydown="check_tab(this, event);"></textarea>
+          <pre id="highlighting" aria-hidden="true">
+            <code class="language-html" id="highlighting-content">
+&lt;span title=&quot;Start Typing&quot;&gt;Just start typing!&lt;/span&gt;
             </code>
           </pre>
         </div>
+        
         <div class="col-sm-8" id="graph">
           <div id="mynetwork"></div>
         </div>
