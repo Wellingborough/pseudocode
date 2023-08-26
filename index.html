@@ -67,13 +67,19 @@
     <div class="container-fluid" style="margin-left: 8px; margin-right: 8px;">
       <div class="row">
 
-        <div style="height: 200px;">
-          <textarea placeholder="Enter HTML Source Code" id="editing" spellcheck="false" oninput="update(this.value); sync_scroll(this);" onscroll="sync_scroll(this);" onkeydown="check_tab(this, event);"></textarea>
-          <pre id="highlighting" aria-hidden="true">
-            <code class="language-html" id="highlighting-content">
+        <div class="col-sm-4" id="editorholder" style="padding:0px;">
+
+
+        
+
+          <div style="height: 200px;">
+            <textarea placeholder="Enter HTML Source Code" id="editing" spellcheck="false" oninput="update(this.value); sync_scroll(this);" onscroll="sync_scroll(this);" onkeydown="check_tab(this, event);"></textarea>
+            <pre id="highlighting" aria-hidden="true">
+              <code class="language-html" id="highlighting-content">
 &lt;span title=&quot;Start Typing&quot;&gt;Just start typing!&lt;/span&gt;
-            </code>
-          </pre>
+              </code>
+            </pre>
+          </div>
         </div>
         
         <div class="col-sm-8" id="graph">
