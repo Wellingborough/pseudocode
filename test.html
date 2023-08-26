@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" >
+  <head>
+    
+    <!-- A pseudocode editor and transpiler                               -->
+    <!-- Written in HTML, JavaScript and CSS.                             -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pseudocode Editor</title>
+
+    <meta name="keywords" content="Pseudocode, OCR, A level, GCSE, Computer Science">
+    <meta name="description" content="Pseudocode Editor">
+    <meta name="author" content="Mark Gamble">
+
+
+    <script src="engine.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/meta.min.js" crossorigin="anonymous"></script>    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" crossorigin="anonymous">        
+  </head>
+  
+  <body onload="setupEditor()">
+    <!-- Now the main container and divs.                                          -->
+    <!-- Responsive design to stack the controls and graph at anything less than   -->
+    <!-- sm - may need to consider stacking at sm too.                             -->
+
+    <div>
+      <textarea id="theeditor" rows="4" cols="50">
+        Just any old placeholder text
+      </textarea>
+      <p>placeholder</p>
+    </div>
+  </body>
+</html>
