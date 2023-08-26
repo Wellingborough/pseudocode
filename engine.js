@@ -8,6 +8,6 @@ function setupEditor() {
   // Set up file handler
   //
   //document.getElementById("load-btn").addEventListener('change', handleFile, false);
-  cm = new CodeMirror.fromTextArea(document.getElementById("theeditor"));
+  cm = new CodeMirror.fromTextArea(document.getElementById("theeditor"), {lineNumbers: true});
 }
 
