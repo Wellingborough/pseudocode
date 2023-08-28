@@ -23,6 +23,9 @@ function setupEditor() {
         for (operation in change) {
           if (operation =='insert') {
             console.log("That was an insert");
+            if (change[operation] == ' ') {
+              console.log("A space");
+            }
           }
         }
       }
