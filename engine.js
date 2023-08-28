@@ -22,17 +22,24 @@ function setupEditor() {
       for (change of delta.ops) {
         for (operation in change) {
           if (operation =='insert') {
-            console.log("That was an insert");
+            //console.log("That was an insert");
             if (change[operation] == ' ') {
-              console.log("A space");
+              //console.log("A space");
               inToken = false;
               token = "";
+              var range = quill.getSelection();
+              if (range) {
+                if (range.length == 0) {
+                  let currentposition = range.index;
+                  quill.formatText(currentposition-1, currentposition, 'bold', false); 
+                }
+              }
             }
             else
             {
               token = token+change[operation];
               if (keywords.includes(token)) {
-                console.log(token);
+                //console.log(token);
                 var range = quill.getSelection();
                 if (range) {
                   if (range.length == 0) {
