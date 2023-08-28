@@ -31,7 +31,17 @@ function setupEditor() {
             else
             {
               token = token+change[operation];
-              console.log(token);
+              if (keywords.includes(token)) {
+                console.log(token);
+                var range = quill.getSelection();
+                if (range) {
+                  if (range.length == 0) {
+                    let currentposition = range.index;
+                    let kwsize = token.length;
+                    quill.formatText(currentposition-kwsize, currentposition, 'bold', true); 
+                  }
+                }
+              }
             }
           }
         }
