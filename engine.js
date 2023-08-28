@@ -29,7 +29,7 @@ function setupEditor() {
             }
             else {
               token = token + change[operation];
-              if (token in keywords) {
+              if (keywords.includes(token)) {
                 console.log(token);
               }
            }
