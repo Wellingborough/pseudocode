@@ -13,17 +13,13 @@ function setupEditor() {
 }
 var stashedText = "";
 
-function processInput() {
-  var x = document.getElementById("editor").value;
-
-  if (x != stashedText) {
-    console.log("New Text");
-    console.log(levenshteinDistance(stashedText, x));
+quill.on('text-change', function(delta, oldDelta, source) {
+  if (source == 'api') {
+    console.log("An API call triggered this change.");
+  } else if (source == 'user') {
+    console.log("A user action triggered this change.");
   }
-
-  stashedText = x;
-}
-
+});
 
 const levenshteinDistance = (str1 = '', str2 = '') => {
    const track = Array(str2.length + 1).fill(null).map(() =>
