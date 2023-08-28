@@ -22,17 +22,6 @@ function setupEditor() {
       for (change of delta.ops) {
         for (operation in change) {
           console.log(operation);
-          if (operation == 'insert' ) {
-            if (change[operation] == " ") {
-              inToken = false;
-              token = "";
-            }
-            else {
-              token = token + change[operation];
-              if (keywords.includes(token)) {
-                console.log(token);
-              }
-           }
         }
       }
     }
