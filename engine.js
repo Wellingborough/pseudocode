@@ -10,16 +10,18 @@ function setupEditor() {
   quill = new Quill('#editor', {
     theme: 'snow'
   });
+
+  quill.on('text-change', function(delta, oldDelta, source) {
+    if (source == 'api') {
+      console.log("An API call triggered this change.");
+    } else if (source == 'user') {
+      console.log("A user action triggered this change.");
+    }
+  });
+
 }
 var stashedText = "";
 
-quill.on('text-change', function(delta, oldDelta, source) {
-  if (source == 'api') {
-    console.log("An API call triggered this change.");
-  } else if (source == 'user') {
-    console.log("A user action triggered this change.");
-  }
-});
 
 const levenshteinDistance = (str1 = '', str2 = '') => {
    const track = Array(str2.length + 1).fill(null).map(() =>
