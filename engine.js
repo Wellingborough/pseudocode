@@ -1,13 +1,14 @@
 //
 // Setup - called on body load...
 //
-var cm;
+var editor;
 
 function setupEditor() {
   //
   // Set up file handler
   //
-  //document.getElementById("load-btn").addEventListener('change', handleFile, false);
-  cm = new CodeMirror.fromTextArea(document.getElementById("theeditor"), {lineNumbers: true});
+  editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.session.setMode("ace/mode/javascript");
 }
 
