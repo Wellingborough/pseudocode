@@ -3,6 +3,10 @@
 //
 var quill;
 
+var keywords = ["for", "to", "next", "do", "until", "while", "endwhile"];
+var inToken=false;
+var token ="";
+
 function setupEditor() {
   //
   // Set up file handler
@@ -18,6 +22,17 @@ function setupEditor() {
       for (change of delta.ops) {
         for (operation in change) {
           console.log(operation);
+          if (operation == 'insert' ) {
+            if (change[operation] == " ") {
+              inToken = false;
+              token = "";
+            }
+            else {
+              token = token + change[operation];
+              if (token in keywords) {
+                console.log(token);
+              }
+           }
         }
       }
     }
