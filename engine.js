@@ -21,7 +21,9 @@ function setupEditor() {
     } else if (source == 'user') {
       for (change of delta.ops) {
         for (operation in change) {
-          console.log(operation);
+          if (operation =='insert') {
+            console.log("That was an insert");
+          }
         }
       }
     }
