@@ -25,6 +25,13 @@ function setupEditor() {
             console.log("That was an insert");
             if (change[operation] == ' ') {
               console.log("A space");
+              inToken = false;
+              token = "";
+            }
+            else
+            {
+              token = token+change[operation];
+              console.log(token);
             }
           }
         }
