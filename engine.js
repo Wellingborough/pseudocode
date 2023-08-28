@@ -1,13 +1,15 @@
 //
 // Setup - called on body load...
 //
-var editor;
+var quill;
 
 function setupEditor() {
   //
   // Set up file handler
   //
-;
+  quill = new Quill('#editor', {
+    theme: 'snow'
+  });
 }
 var stashedText = "";
 
