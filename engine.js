@@ -15,10 +15,10 @@ function setupEditor() {
     if (source == 'api') {
       console.log("An API call triggered this change.");
     } else if (source == 'user') {
-      console.log("A user action triggered this change.");
-      console.log(delta);
       for (change of delta.ops) {
-        console.log(change);
+        for (operation in change) {
+          console.log(operation);
+        }
       }
     }
   });
