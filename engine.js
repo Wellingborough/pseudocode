@@ -17,7 +17,7 @@ function setupEditor() {
     } else if (source == 'user') {
       console.log("A user action triggered this change.");
       console.log(delta);
-      for (change of delta) {
+      for (change in delta.ops) {
         console.log(change);
       }
     }
