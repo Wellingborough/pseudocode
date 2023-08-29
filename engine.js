@@ -5,13 +5,14 @@ var quill;
 
 const keywordsIndenting = ["for", "do", "while"];
 const keywordsNonIndenting = ["to", "next", "until", "endwhile"];
-const keywords = keywordsIndenting.concat(keywordsNonIndenting);
+const keywordBuiltins = ["print", "input"]
+const keywords = keywordsIndenting.concat(keywordsNonIndenting).concat(keywordBuiltins);
 
 var inToken = false;
 var token = "";
 var indentLevel = 0;
 var pendingIndent = false;
-const indent = "    ";
+const indent = "\n    ";
 
 function setupEditor() {
   //
@@ -76,13 +77,17 @@ function handleInsert(insertedChar) {
   {
     token = token+change[operation];
     if (keywords.includes(token)) {
-      // mark the keyword token using bold
+      // mark the keyword token using colour
+      var colorcode = "orange";
+      if (keywordBuiltins.includes(token)) {
+        colorcode = "purple";
+      }
       var range = quill.getSelection();
       if (range) {
         if (range.length == 0) {
           let currentposition = range.index;
           let kwsize = token.length;
-          quill.formatText(currentposition-kwsize, currentposition, 'bold', true); 
+          quill.formatText(currentposition-kwsize, currentposition, 'color', colorcode); 
         }
       }
 
