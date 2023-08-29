@@ -68,7 +68,7 @@ function handleInsert(insertedChar) {
     // check for pending indent
     if (pendingIndent == true) {
       var caretPosition = quill.getSelection(true);
-      quill.insertText(caretPosition, indent);
+      quill.insertText(caretPosition+1, indent);
       pendingIndent = false;
     }
   }
