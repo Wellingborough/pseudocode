@@ -4,8 +4,9 @@
 var quill;
 
 var keywords = ["for", "to", "next", "do", "until", "while", "endwhile"];
-var inToken=false;
-var token ="";
+var inToken = false;
+var token = "";
+var indentLevel = 0;
 
 function setupEditor() {
   //
@@ -22,34 +23,7 @@ function setupEditor() {
       for (change of delta.ops) {
         for (operation in change) {
           if (operation =='insert') {
-            //console.log("That was an insert");
-            if (change[operation] == ' ') {
-              //console.log("A space");
-              inToken = false;
-              token = "";
-              var range = quill.getSelection();
-              if (range) {
-                if (range.length == 0) {
-                  let currentposition = range.index;
-                  quill.formatText(currentposition-1, currentposition, 'bold', false); 
-                }
-              }
-            }
-            else
-            {
-              token = token+change[operation];
-              if (keywords.includes(token)) {
-                //console.log(token);
-                var range = quill.getSelection();
-                if (range) {
-                  if (range.length == 0) {
-                    let currentposition = range.index;
-                    let kwsize = token.length;
-                    quill.formatText(currentposition-kwsize, currentposition, 'bold', true); 
-                  }
-                }
-              }
-            }
+            handleInsert(change[operation]);
           }
         }
       }
@@ -58,6 +32,49 @@ function setupEditor() {
 
 }
 var stashedText = "";
+
+function handleInsert(insertedChar) {
+  //console.log("That was an insert");
+  if (insertedChar == ' ') {
+    //console.log("A space");
+    inToken = false;
+    token = "";
+    var range = quill.getSelection();
+    if (range) {
+      if (range.length == 0) {
+        let currentposition = range.index;
+        quill.formatText(currentposition-1, currentposition, 'bold', false); 
+      }
+    }
+  }
+  else if (insertedChar =='\n') {
+    console.log("A return");
+    inToken = false;
+    token = "";
+    var range = quill.getSelection();
+    if (range) {
+      if (range.length == 0) {
+        let currentposition = range.index;
+        quill.formatText(currentposition-1, currentposition, 'bold', false); 
+      }
+    }
+  }
+  else
+  {
+    token = token+change[operation];
+    if (keywords.includes(token)) {
+      //console.log(token);
+      var range = quill.getSelection();
+      if (range) {
+        if (range.length == 0) {
+          let currentposition = range.index;
+          let kwsize = token.length;
+          quill.formatText(currentposition-kwsize, currentposition, 'bold', true); 
+        }
+      }
+    }
+  }
+}
 
 
 const levenshteinDistance = (str1 = '', str2 = '') => {
