@@ -49,7 +49,7 @@ function handleInsert(insertedChar) {
     if (range) {
       if (range.length == 0) {
         let currentposition = range.index;
-        quill.formatText(currentposition-1, currentposition, 'bold', false); 
+        quill.formatText(currentposition-1, currentposition, 'color', 'black'); 
       }
     }
   }
@@ -62,14 +62,14 @@ function handleInsert(insertedChar) {
     if (range) {
       if (range.length == 0) {
         let currentposition = range.index;
-        quill.formatText(currentposition, currentposition, 'bold', false); 
+        quill.formatText(currentposition, currentposition, 'color', 'black'); 
       }
     }
 
     // check for pending indent
     if (pendingIndent == true) {
       var caretPosition = quill.getSelection(true);
-      quill.insertText(caretPosition+1, indent);
+      quill.insertText(caretPosition, indent);
       pendingIndent = false;
     }
   }
