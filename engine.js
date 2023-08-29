@@ -3,10 +3,15 @@
 //
 var quill;
 
-var keywords = ["for", "to", "next", "do", "until", "while", "endwhile"];
+const keywordsIndenting = ["for", "do", "while"];
+const keywordsNonIndenting = ["to", "next", "until", "endwhile"];
+const keywords = keywordsIndenting.concat(keywordsNonIndenting);
+
 var inToken = false;
 var token = "";
 var indentLevel = 0;
+var pendingIndent = false;
+const indent = "    ";
 
 function setupEditor() {
   //
@@ -51,19 +56,27 @@ function handleInsert(insertedChar) {
     console.log("A return");
     inToken = false;
     token = "";
+    // reset any formatting as we have left the keyword (if it was such)
     var range = quill.getSelection();
     if (range) {
       if (range.length == 0) {
         let currentposition = range.index;
-        quill.formatText(currentposition-1, currentposition, 'bold', false); 
+        quill.formatText(currentposition, currentposition, 'bold', false); 
       }
+    }
+
+    // check for pending indent
+    if (pendingIndent == true) {
+      var caretPosition = quill.getSelection(true);
+      quill.insertText(caretPosition, indent);
+      pendingIndent = false;
     }
   }
   else
   {
     token = token+change[operation];
     if (keywords.includes(token)) {
-      //console.log(token);
+      // mark the keyword token using bold
       var range = quill.getSelection();
       if (range) {
         if (range.length == 0) {
@@ -71,6 +84,11 @@ function handleInsert(insertedChar) {
           let kwsize = token.length;
           quill.formatText(currentposition-kwsize, currentposition, 'bold', true); 
         }
+      }
+
+      // check whether we need to indent
+      if (keywordsIndenting.includes(token)) {
+        pendingIndent = true;
       }
     }
   }
