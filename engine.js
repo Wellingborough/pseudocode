@@ -12,7 +12,7 @@ var inToken = false;
 var token = "";
 var indentLevel = 0;
 var pendingIndent = false;
-const indent = "\n    ";
+const indent = "\nxxxx";
 
 function setupEditor() {
   //
@@ -88,6 +88,7 @@ function handleInsert(insertedChar) {
           let currentposition = range.index;
           let kwsize = token.length;
           quill.formatText(currentposition-kwsize, currentposition, 'color', colorcode); 
+          quill.formatText(currentposition, currentposition, 'color', 'black'); 
         }
       }
 
