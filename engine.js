@@ -12,7 +12,7 @@ var inToken = false;
 var token = "";
 var indentLevel = 0;
 var pendingIndent = false;
-const indent = "\nxxxx";
+const indent = "\n    ";
 
 function setupEditor() {
   //
@@ -70,6 +70,7 @@ function handleInsert(insertedChar) {
     if (pendingIndent == true) {
       var caretPosition = quill.getSelection(true);
       quill.insertText(caretPosition, indent);
+      quill.setSelection(caretPosition.index + 4);
       pendingIndent = false;
     }
   }
