@@ -13,7 +13,7 @@ var token = "";
 var indentLevel = 0;
 var pendingIndent = false;
 var currentIndent = "";
-const indent = "xxxx";
+const indent = "\t";
 
 function setupEditor() {
   //
