@@ -61,16 +61,20 @@ function handleInsert(insertedChar) {
     var range = quill.getSelection();
     if (range) {
       if (range.length == 0) {
-        let currentposition = range.index;
-        quill.formatText(currentposition, currentposition, 'color', 'black'); 
+        let currentPosition = range.index;
+        quill.formatText(currentPosition, currentPosition, 'color', 'black'); 
       }
     }
 
     // check for pending indent
     if (pendingIndent == true) {
       var caretPosition = quill.getSelection(true);
-      quill.insertText(caretPosition.index+1, indent);
-      quill.setSelection(caretPosition.index+4);
+      let currentPosition = caretPosition.index;
+      quill.updateContents(new Delta()
+        .retain(currentPosition)      // Keep everything
+        .insert('    \n')             // Must end with a CR
+      );
+      quill.setSelection(currentPosition+4);
       pendingIndent = false;
     }
   }
