@@ -70,7 +70,7 @@ function handleInsert(insertedChar) {
     if (pendingIndent == true) {
       var caretPosition = quill.getSelection(true);
       let currentPosition = caretPosition.index;
-      quill.insertText(currentPosition, "    \n");
+      quill.insertText(currentPosition, "\n    ");
       pendingIndent = false;
     }
   }
