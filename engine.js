@@ -70,11 +70,7 @@ function handleInsert(insertedChar) {
     if (pendingIndent == true) {
       var caretPosition = quill.getSelection(true);
       let currentPosition = caretPosition.index;
-      quill.updateContents(new Delta()
-        .retain(currentPosition)      // Keep everything
-        .insert('    \n')             // Must end with a CR
-      );
-      quill.setSelection(currentPosition+4);
+      quill.insertText(currentPosition, "    \n");
       pendingIndent = false;
     }
   }
