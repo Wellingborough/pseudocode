@@ -71,7 +71,7 @@ function handleInsert(insertedChar) {
       var caretPosition = quill.getSelection(true);
       let currentPosition = caretPosition.index;
       quill.insertText(currentPosition, "\n    ");
-      setTimeout(() => quill.setSelection(currentPoisition + 4, 0), 0)
+      setTimeout(() => quill.setSelection(currentPosition + 4, 0), 0)
       pendingIndent = false;
     }
   }
