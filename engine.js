@@ -12,6 +12,7 @@ var inToken = false;
 var token = "";
 var indentLevel = 0;
 var pendingIndent = false;
+var currentIndent = "";
 const indent = "xxxx";
 
 function setupEditor() {
@@ -68,11 +69,16 @@ function handleInsert(insertedChar) {
 
     // check for pending indent
     if (pendingIndent == true) {
+      pendingIndent = false;
+      indentLevel = indentLevel+1;
+      currentIndent = currentIndent + indent;
+    }
+
+    if (indentLevel > 0) {
       var caretPosition = quill.getSelection(true);
       let currentPosition = caretPosition.index;
-      quill.insertText(currentPosition, "\n    ");
-      setTimeout(() => quill.setSelection(currentPosition + 4, 0), 0)
-      pendingIndent = false;
+      quill.insertText(currentPosition, "\n"+currentIndent);
+      setTimeout(() => quill.setSelection(currentPosition + currentIndent.length+1, 0), 0)
     }
   }
   else
