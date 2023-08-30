@@ -20,6 +20,7 @@ function setupEditor() {
   // Set up file handler
   //
   quill = new Quill('#editor', {
+    placeholder: 'Start typing your pseudocode here...',
     theme: 'snow'
   });
 
